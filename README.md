@@ -1,13 +1,14 @@
 # native-wasm-c
 
-Compares performance of the single precision BLAS saxpy routine between WebAssembly, TypeScript, C (Node.js addon) and Vectorious (linked with system BLAS).
+Compares performance of the single precision BLAS saxpy routine between WebAssembly (using [AssemblyScript](https://github.com/AssemblyScript/assemblyscript)), TypeScript, C (Node.js addon) and [nblas](https://github.com/mateogianolio/nblas).
 
 Files:
 
-* `assembly/saxpy.ts` – TypeScript implementation
+* `src/saxpy.ts` – TypeScript implementation
 * `c/saxpy.cc` – C implementation
 * `wasm/saxpy.wasm` – WASM
 * `wasm/saxpy_optimized.wasm` – Optimized WASM
+* `assembly/index.ts` – Entry point for AssemblyScript compilation
 
 ```bash
 npm install
@@ -18,9 +19,9 @@ npm test
 Test output:
 
 ```
-ts x 1,644,903 ops/sec ±1.66% (91 runs sampled)
-wasm x 186,889 ops/sec ±0.88% (94 runs sampled)
-wasm optimized x 188,939 ops/sec ±0.54% (95 runs sampled)
-c x 2,962,364 ops/sec ±0.23% (95 runs sampled)
-vectorious x 8,411,726 ops/sec ±0.56% (95 runs sampled)
+ts x 1,603,140 ops/sec ±1.00% (89 runs sampled)
+wasm x 178,353 ops/sec ±1.66% (92 runs sampled)
+wasm optimized x 175,419 ops/sec ±1.31% (88 runs sampled)
+c x 2,896,236 ops/sec ±0.58% (91 runs sampled)
+blas x 9,255,467 ops/sec ±0.72% (91 runs sampled)
 ```
