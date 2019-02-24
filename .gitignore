@@ -1,0 +1,4 @@
+node_modules
+build
+index.wasm*
+index.wat

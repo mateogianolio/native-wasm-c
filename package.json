@@ -1,0 +1,24 @@
+{
+  "name": "native-wasm-c",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx ts-node index.ts",
+    "build": "node-gyp rebuild && asc assembly/index.ts -b index.wasm -t index.wat --sourceMap --validate --debug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^11.9.5",
+    "@types/webassembly-js-api": "0.0.2",
+    "assemblyscript": "github:AssemblyScript/assemblyscript",
+    "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "@types/benchmark": "^1.0.31",
+    "benchmark": "^2.1.4",
+    "vectorious": "^5.1.0"
+  }
+}

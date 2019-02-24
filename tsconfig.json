@@ -1,0 +1,11 @@
+{
+  "extends": "assemblyscript/std/assembly.json",
+  "compilerOptions": {
+    "noLib": false,
+    "lib": ["dom"],
+    "types": ["assembly", "node"]
+  },
+  "include": [
+    "./*.ts"
+  ]
+}
