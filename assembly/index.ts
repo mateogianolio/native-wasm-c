@@ -1,4 +1,4 @@
-import 'allocator/tlsf';
+import 'allocator/arena';
 
 export { memory };
-export { saxpy } from './saxpy';
+export { saxpy } from '../src/saxpy';
