@@ -1,6 +1,7 @@
 # native-wasm-c
 
 Compares performance of the single precision BLAS saxpy routine between WebAssembly (using [AssemblyScript](https://github.com/AssemblyScript/assemblyscript)), TypeScript, C (Node.js addon) and [nblas](https://github.com/mateogianolio/nblas).
+[Here](https://github.com/Reference-LAPACK/lapack/blob/master/BLAS/SRC/saxpy.f) is the reference implementation for the saxpy routine.
 
 Files:
 
