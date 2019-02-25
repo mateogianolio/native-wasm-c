@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx ts-node index.ts",
-    "build": "node-gyp rebuild && asc assembly/index.ts -b index.wasm -t index.wat -O3 --sourceMap --validate --noAssert"
+    "build": "node-gyp rebuild && asc assembly/index.ts -b index.wasm -t index.wat -O3 --validate --noAssert"
   },
   "keywords": [],
   "author": "",

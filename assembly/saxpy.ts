@@ -1,3 +1,7 @@
+
+export function empty(n: i32, alpha: f32, x: Float32Array, incx: i32, y: Float32Array, incy: i32): void {
+}
+
 export function saxpy(n: i32, alpha: f32, x: Float32Array, incx: i32, y: Float32Array, incy: i32): void {
   if (!alpha || n < 0) return;
 
