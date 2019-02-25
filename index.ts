@@ -10,25 +10,27 @@ const wasm = loader.instantiateBuffer(readFileSync('./index.wasm'));
 
 const c = require('./build/Release/addon');
 
-const vx = Vector.random(512, -1, 1, Float32Array);
-const vy = Vector.random(512, -1, 1, Float32Array);
+const size = 512 * 4;
 
-const x = Vector.random(512, -1, 1, Float32Array).data as Float32Array;
-const y = Vector.random(512, -1, 1, Float32Array).data as Float32Array;
+const vx = Vector.random(size, -1, 1, Float32Array);
+const vy = Vector.random(size, -1, 1, Float32Array);
+
+const x = Vector.random(size, -1, 1, Float32Array).data as Float32Array;
+const y = Vector.random(size, -1, 1, Float32Array).data as Float32Array;
 
 const px = wasm.newArray(x);
 const py = wasm.newArray(y);
 
 suite.add('ts', () => {
-  saxpy(512, 1, x, 1, y, 1);
+  saxpy(size, 1, x, 1, y, 1);
 });
 
 suite.add('wasm', () => {
-  wasm.saxpy(512, 1, px, 1, py, 1);
+  wasm.saxpy(size, 1, px, 1, py, 1);
 });
 
 suite.add('c', () => {
-  c.saxpy(512, 1, x, 1, y, 1);
+  c.saxpy(size, 1, x, 1, y, 1);
 });
 
 suite.add('vectorious', () => {

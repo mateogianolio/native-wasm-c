@@ -12,11 +12,7 @@ void saxpy(const v8::FunctionCallbackInfo<v8::Value>& info) {
 
   int i;
 
-  if (n < 0) {
-    return;
-  }
-
-  if (alpha == 0) {
+  if (!alpha || n < 0) {
     return;
   }
 
@@ -24,7 +20,7 @@ void saxpy(const v8::FunctionCallbackInfo<v8::Value>& info) {
     int m = n % 4;
     if (m != 0) {
       for (i = 0; i < m; i++) {
-        y[i] = y[i] + alpha * x[i];
+        y[i] += alpha * x[i];
       }
     }
 
@@ -32,8 +28,8 @@ void saxpy(const v8::FunctionCallbackInfo<v8::Value>& info) {
       return;
     }
 
-    for (i = 0; i < n; i += 4) {
-      y[i] = y[i] + alpha * x[i];
+    for (i = m; i < n; i += 4) {
+      y[i + 0] = y[i + 0] + alpha * x[i + 0];
       y[i + 1] = y[i + 1] + alpha * x[i + 1];
       y[i + 2] = y[i + 2] + alpha * x[i + 2];
       y[i + 3] = y[i + 3] + alpha * x[i + 3];
