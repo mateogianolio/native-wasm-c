@@ -2,6 +2,8 @@
 
 #define GET_CONTENTS(view) (static_cast<unsigned char*>(view->Buffer()->GetContents().Data()) + view->ByteOffset())
 
+void empty(const v8::FunctionCallbackInfo<v8::Value>& info) {}
+
 void saxpy(const v8::FunctionCallbackInfo<v8::Value>& info) {
   const int n = info[0]->Uint32Value();
   const int alpha = info[1]->NumberValue();
@@ -12,11 +14,7 @@ void saxpy(const v8::FunctionCallbackInfo<v8::Value>& info) {
 
   int i;
 
-  if (n < 0) {
-    return;
-  }
-
-  if (alpha == 0) {
+  if (!alpha || n < 0) {
     return;
   }
 
@@ -24,7 +22,7 @@ void saxpy(const v8::FunctionCallbackInfo<v8::Value>& info) {
     int m = n % 4;
     if (m != 0) {
       for (i = 0; i < m; i++) {
-        y[i] = y[i] + alpha * x[i];
+        y[i] += alpha * x[i];
       }
     }
 
@@ -32,8 +30,8 @@ void saxpy(const v8::FunctionCallbackInfo<v8::Value>& info) {
       return;
     }
 
-    for (i = 0; i < n; i += 4) {
-      y[i] = y[i] + alpha * x[i];
+    for (i = m; i < n; i += 4) {
+      y[i + 0] = y[i + 0] + alpha * x[i + 0];
       y[i + 1] = y[i + 1] + alpha * x[i + 1];
       y[i + 2] = y[i + 2] + alpha * x[i + 2];
       y[i + 3] = y[i + 3] + alpha * x[i + 3];
@@ -51,7 +49,7 @@ void saxpy(const v8::FunctionCallbackInfo<v8::Value>& info) {
     }
 
     for (i = 0; i < n; i++) {
-      y[iy] = y[i] + alpha * x[ix];
+      y[iy] = y[iy] + alpha * x[ix];
       ix = ix + incx;
       iy = iy + incy;
     }
@@ -59,6 +57,7 @@ void saxpy(const v8::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 void Init(v8::Local<v8::Object> exports) {
+  NODE_SET_METHOD(exports, "empty", empty);
   NODE_SET_METHOD(exports, "saxpy", saxpy);
 }
 

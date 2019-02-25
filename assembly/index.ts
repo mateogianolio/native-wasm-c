@@ -1,4 +1,4 @@
 import 'allocator/arena';
 
 export { memory };
-export { saxpy } from '../src/saxpy';
+export { empty, saxpy } from './saxpy';

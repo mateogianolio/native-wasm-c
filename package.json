@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npx ts-node index.ts",
     "build:c": "node-gyp rebuild",
-    "build:wasm": "asc assembly/index.ts -b wasm/saxpy.wasm -t wasm/saxpy.wat --sourceMap --validate --debug",
-    "build:wasm-optimize": "asc assembly/index.ts -b wasm/saxpy_optimized.wasm -t wasm/saxpy_optimized.wat --sourceMap --validate --optimize",
+    "build:wasm": "asc assembly/index.ts -b wasm/saxpy.wasm -t wasm/saxpy.wat --validate --debug",
+    "build:wasm-optimize": "asc assembly/index.ts -b wasm/saxpy_optimized.wasm -t wasm/saxpy_optimized.wat -O3 --validate --noAssert",
     "build": "npm run build:c && npm run build:wasm && npm run build:wasm-optimize"
   },
   "keywords": [],
