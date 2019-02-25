@@ -10,7 +10,7 @@ const wasm = loader.instantiateBuffer(readFileSync('./index.wasm'));
 
 const c = require('./build/Release/addon');
 
-const size = 512;
+const size = 512 * 1024 * 30;
 
 const vx = Vector.random(size, -1, 1, Float32Array);
 const vy = Vector.random(size, -1, 1, Float32Array);
@@ -20,6 +20,7 @@ const y = Vector.random(size, -1, 1, Float32Array).data as Float32Array;
 
 const px = wasm.newArray(x);
 const py = wasm.newArray(y);
+
 
 suite.add('ts', () => {
   saxpy(size, 1, x, 1, y, 1);
